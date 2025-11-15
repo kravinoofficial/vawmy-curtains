@@ -153,6 +153,10 @@ export const api = {
       },
       body: JSON.stringify(data)
     });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to create social media link');
+    }
     return res.json();
   },
 
@@ -165,6 +169,10 @@ export const api = {
       },
       body: JSON.stringify(data)
     });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to update social media link');
+    }
     return res.json();
   },
 
@@ -173,6 +181,10 @@ export const api = {
       method: 'DELETE',
       headers: { 'Authorization': getAuthHeader() }
     });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to delete social media link');
+    }
     return res.json();
   }
 };

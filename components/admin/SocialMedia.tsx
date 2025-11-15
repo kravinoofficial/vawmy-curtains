@@ -66,9 +66,9 @@ const AdminSocialMedia: React.FC = () => {
 
       resetForm();
       fetchSocialLinks();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving social media:', error);
-      alert('Failed to save social media link');
+      alert(`Failed to save social media link: ${error.message || 'Unknown error'}`);
     }
   };
 
@@ -100,13 +100,16 @@ const AdminSocialMedia: React.FC = () => {
   const toggleVisibility = async (link: SocialMedia) => {
     try {
       await api.updateSocialMedia(link.id, {
-        ...link,
+        platform: link.platform,
+        url: link.url,
+        icon_name: link.icon_name,
+        display_order: link.display_order,
         is_visible: !link.is_visible
       });
       fetchSocialLinks();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error toggling visibility:', error);
-      alert('Failed to update visibility');
+      alert(`Failed to update visibility: ${error.message || 'Unknown error'}`);
     }
   };
 
