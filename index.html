@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vawmy Curtains | Modern & Elegant Window Treatments</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="description" content="Vawmy Curtains & Decor - Premium curtains and window treatments designed to transform your space with elegance and style." />
+    <meta name="keywords" content="curtains, window treatments, home decor, interior design, vawmy" />
+
+    <title>Vawmy Curtains & Decor | Premium Window Treatments</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,15 +40,65 @@
       }
     </script>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
       html {
         scroll-behavior: smooth;
+        width: 100%;
+        overflow-x: hidden;
       }
+      
       body {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
       }
+      
+      /* Custom scrollbar */
       body::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, and Opera */
+        width: 10px;
+      }
+      
+      body::-webkit-scrollbar-track {
+        background: #FFFFFF;
+      }
+      
+      body::-webkit-scrollbar-thumb {
+        background: #A4D65E;
+        border-radius: 5px;
+      }
+      
+      body::-webkit-scrollbar-thumb:hover {
+        background: #8BC34A;
+      }
+      
+      body {
+        background-color: #FFFFFF;
+      }
+      
+      #root {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      
+      /* Prevent horizontal scroll on all elements */
+      * {
+        max-width: 100%;
+      }
+      
+      /* Selection color */
+      ::selection {
+        background-color: #A4D65E;
+        color: #4A4A4A;
+      }
+      
+      ::-moz-selection {
+        background-color: #A4D65E;
+        color: #4A4A4A;
       }
     </style>
   <script type="importmap">
@@ -63,7 +116,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-brown-50">
+  <body class="bg-white">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

@@ -33,21 +33,24 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection }) => {
       viewport={{ once: true, amount: 0.3 }}
       variants={cardVariants}
     >
-      <Link to={`/collection/${collection.id}`} className="block group overflow-hidden rounded-lg shadow-md">
+      <Link to={`/collection/${collection.id}`} className="block group overflow-hidden rounded-lg shadow-lg border-2 border-transparent hover:border-[#A4D65E] transition-all duration-300">
         <motion.div 
           className="relative"
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
           <img 
             src={collection.cover_image} 
             alt={collection.name} 
-            className="w-full h-96 object-cover transition-transform duration-500 ease-in-out" 
+            className="w-full h-64 sm:h-80 md:h-96 object-cover transition-transform duration-500 ease-in-out" 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300"></div>
-          <div className="absolute bottom-0 left-0 p-6 text-white">
-            <h3 className="text-3xl font-serif">{collection.name}</h3>
-            <p className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1">View Collection &rarr;</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#4A4A4A]/80 via-[#4A4A4A]/20 to-transparent transition-all duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-2">{collection.name}</h3>
+            <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-sm sm:text-base text-[#A4D65E] font-semibold">View Collection</span>
+              <span className="text-[#A4D65E]">&rarr;</span>
+            </div>
           </div>
         </motion.div>
       </Link>

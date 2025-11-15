@@ -32,10 +32,11 @@ const CollectionDetailPage: React.FC = () => {
   if (loading) {
     return (
       <AnimatedPage>
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center bg-white">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-brown-800 mx-auto mb-4"></div>
-            <p className="text-brown-600">Loading collection...</p>
+            <img src="/logo-removebg-preview.png" alt="Vawmy" className="h-20 mx-auto mb-6 opacity-50" />
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#A4D65E] mx-auto mb-4"></div>
+            <p className="text-gray-600 font-medium">Loading collection...</p>
           </div>
         </div>
       </AnimatedPage>
@@ -45,10 +46,11 @@ const CollectionDetailPage: React.FC = () => {
   if (!collection) {
     return (
       <AnimatedPage>
-        <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 pt-24">
-          <h2 className="text-4xl font-serif mb-4">Collection Not Found</h2>
-          <p className="mb-8 text-lg">We couldn't find the collection you were looking for.</p>
-          <Link to="/" className="bg-brown-800 text-white font-bold py-3 px-6 rounded hover:bg-brown-700 transition-colors">
+        <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 sm:p-6 pt-20 sm:pt-24 bg-white">
+          <img src="/logo-removebg-preview.png" alt="Vawmy" className="h-24 mx-auto mb-6 opacity-30" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#4A4A4A] mb-4">Collection Not Found</h2>
+          <p className="mb-6 sm:mb-8 text-base sm:text-lg px-4 text-gray-600">We couldn't find the collection you were looking for.</p>
+          <Link to="/" className="bg-[#A4D65E] text-[#4A4A4A] font-bold py-3 px-6 text-sm sm:text-base rounded-full hover:bg-[#8BC34A] transition-colors shadow-lg">
             Back to Home
           </Link>
         </div>
@@ -73,23 +75,24 @@ const CollectionDetailPage: React.FC = () => {
 
   return (
     <AnimatedPage>
-      <div className="container mx-auto px-6 py-24 md:py-32">
+      <div className="container mx-auto px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-white min-h-screen">
         {/* Header */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+          className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-6xl font-serif text-brown-900">{collection.name}</h1>
-          <p className="mt-4 text-lg text-brown-600">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#4A4A4A]">{collection.name}</h1>
+          <div className="w-24 h-1 bg-[#A4D65E] mx-auto mt-4 mb-6"></div>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 px-4">
             {collection.description}
           </p>
         </motion.div>
 
         {/* Masonry Grid */}
         <motion.div
-          className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8"
+          className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 md:gap-8 space-y-4 sm:space-y-6 md:space-y-8"
           variants={containerVariants}
           initial="hidden"
           animate="show"
@@ -98,14 +101,14 @@ const CollectionDetailPage: React.FC = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="overflow-hidden rounded-lg shadow-lg cursor-pointer break-inside-avoid"
+              className="overflow-hidden rounded-lg shadow-lg cursor-pointer break-inside-avoid border-2 border-transparent hover:border-[#A4D65E] transition-all duration-300"
               onClick={() => setSelectedImg(image)}
             >
               <motion.img
                 src={image}
                 alt={`${collection.name} image ${index + 1}`}
                 className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
               />
             </motion.div>
@@ -113,8 +116,8 @@ const CollectionDetailPage: React.FC = () => {
         </motion.div>
 
         {/* Back to Collections Link */}
-        <div className="text-center mt-16">
-          <Link to="/" className="inline-block bg-brown-800 text-white font-bold py-3 px-8 rounded-full hover:bg-brown-700 transition-all duration-300 transform hover:scale-105">
+        <div className="text-center mt-12 sm:mt-16">
+          <Link to="/" className="inline-block bg-[#A4D65E] text-[#4A4A4A] font-bold py-3 px-6 sm:px-8 text-sm sm:text-base rounded-full hover:bg-[#8BC34A] transition-all duration-300 transform hover:scale-105 shadow-lg">
             &larr; Back to Collections
           </Link>
         </div>
@@ -143,7 +146,7 @@ const CollectionDetailPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.2 } }}
               exit={{ opacity: 0 }}
-              className="absolute top-5 right-5 text-white text-4xl hover:text-brown-200 transition-colors"
+              className="absolute top-5 right-5 text-white text-4xl hover:text-[#A4D65E] transition-colors bg-[#4A4A4A]/50 rounded-full p-2"
               onClick={() => setSelectedImg(null)}
               aria-label="Close image view"
             >

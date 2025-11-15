@@ -11,6 +11,8 @@ const AdminLayout: React.FC = () => {
           <h1>Vawmy Curtains Admin</h1>
           <div className="admin-nav-links">
             <Link to="/admin/collections">Collections</Link>
+            <Link to="/admin/blog">Blog</Link>
+            <Link to="/admin/social">Social Media</Link>
             <Link to="/admin/contact">Contact Info</Link>
             <Link to="/">← Back to Site</Link>
           </div>

@@ -88,5 +88,91 @@ export const api = {
       body: formData
     });
     return res.json();
+  },
+
+  // Blog Posts (Public)
+  getBlogPosts: async () => {
+    const res = await fetch(`${API_URL}/api/blog`);
+    if (!res.ok) throw new Error('Failed to fetch blog posts');
+    return res.json();
+  },
+
+  getBlogPost: async (slug: string) => {
+    const res = await fetch(`${API_URL}/api/blog/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch blog post');
+    return res.json();
+  },
+
+  // Blog Posts (Admin)
+  createBlogPost: async (formData: FormData) => {
+    const res = await fetch(`${API_URL}/api/blog`, {
+      method: 'POST',
+      headers: { 'Authorization': getAuthHeader() },
+      body: formData
+    });
+    return res.json();
+  },
+
+  updateBlogPost: async (id: string, formData: FormData) => {
+    const res = await fetch(`${API_URL}/api/blog/${id}`, {
+      method: 'PUT',
+      headers: { 'Authorization': getAuthHeader() },
+      body: formData
+    });
+    return res.json();
+  },
+
+  deleteBlogPost: async (id: string) => {
+    const res = await fetch(`${API_URL}/api/blog/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  // Social Media (Public)
+  getSocialMedia: async () => {
+    const res = await fetch(`${API_URL}/api/social`);
+    if (!res.ok) throw new Error('Failed to fetch social media');
+    return res.json();
+  },
+
+  getVisibleSocialMedia: async () => {
+    const res = await fetch(`${API_URL}/api/social/visible`);
+    if (!res.ok) throw new Error('Failed to fetch visible social media');
+    return res.json();
+  },
+
+  // Social Media (Admin)
+  createSocialMedia: async (data: any) => {
+    const res = await fetch(`${API_URL}/api/social`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  updateSocialMedia: async (id: number, data: any) => {
+    const res = await fetch(`${API_URL}/api/social/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  deleteSocialMedia: async (id: number) => {
+    const res = await fetch(`${API_URL}/api/social/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': getAuthHeader() }
+    });
+    return res.json();
   }
 };

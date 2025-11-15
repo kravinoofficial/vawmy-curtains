@@ -1,0 +1,105 @@
+/* Vawmy Curtains & Decor Theme */
+:root {
+  --vawmy-primary: #A4D65E;
+  --vawmy-primary-hover: #8BC34A;
+  --vawmy-dark: #4A4A4A;
+  --vawmy-dark-hover: #2A2A2A;
+  --vawmy-light: #F5F5F5;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vawmy-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vawmy-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vawmy-primary-hover);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--vawmy-primary);
+  color: var(--vawmy-dark);
+}
+
+::-moz-selection {
+  background-color: var(--vawmy-primary);
+  color: var(--vawmy-dark);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--vawmy-primary);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Custom gradient backgrounds */
+.gradient-vawmy {
+  background: linear-gradient(135deg, var(--vawmy-primary) 0%, var(--vawmy-primary-hover) 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, var(--vawmy-dark) 0%, var(--vawmy-dark-hover) 100%);
+}
+
+/* Image hover effects */
+.image-hover-zoom {
+  overflow: hidden;
+}
+
+.image-hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.image-hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Card shadow effects */
+.card-shadow {
+  box-shadow: 0 4px 6px -1px rgba(164, 214, 94, 0.1), 0 2px 4px -1px rgba(164, 214, 94, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 20px 25px -5px rgba(164, 214, 94, 0.2), 0 10px 10px -5px rgba(164, 214, 94, 0.1);
+}
