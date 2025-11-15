@@ -46,157 +46,201 @@ const HomePage: React.FC = () => {
 
   return (
     <AnimatedPage>
-      {/* Hero Section */}
-      <div className="min-h-screen bg-white flex items-center justify-center relative pt-20">
-        <div className="container mx-auto px-4 sm:px-6">
+      {/* Hero Section - Sharp Fixed Background Image */}
+      <div 
+        className="h-[65vh] min-h-[650px] flex items-center justify-center relative overflow-hidden"
+        style={{
+          backgroundImage: "url('https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=format&fit=crop&w=2400&q=100')",
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Very light overlay for text contrast only */}
+        <div className="absolute inset-0 bg-white/20"></div>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div 
             className="text-center max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-8"
             >
               <img src="/logo-removebg-preview.png" alt="Vawmy Curtains & Decor" className="h-32 sm:h-40 md:h-48 lg:h-56 mx-auto" />
             </motion.div>
             <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#4A4A4A]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-[#4A4A4A]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             >
               Elegance, Redefined
             </motion.h1>
             <motion.p 
-              className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-gray-600 mb-8"
+              className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto text-gray-700 mb-4 font-light"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Discover our curated collections of premium curtains, designed to transform your house into a home.
+              Handcrafted curtains and decor from boutique Malaysian artisans
             </motion.p>
-            <motion.a
-              href="#collections"
-              className="inline-block px-8 py-4 bg-[#A4D65E] text-[#4A4A4A] font-bold rounded-full hover:bg-[#8BC34A] transition-all duration-300 shadow-lg text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.div
+              className="flex justify-center items-center mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
             >
-              Explore Collections
-            </motion.a>
-            
-            {/* Decorative Elements */}
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
+              <motion.a
+                href="#collections"
+                className="px-12 py-4 bg-[#A4D65E] text-white font-bold rounded-lg hover:bg-[#8BC34A] transition-all duration-300 shadow-lg text-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="text-3xl font-bold text-[#A4D65E]">10+</div>
-                <div className="text-sm text-gray-600 mt-1">Years Experience</div>
-              </motion.div>
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3 }}
-              >
-                <div className="text-3xl font-bold text-[#A4D65E]">500+</div>
-                <div className="text-sm text-gray-600 mt-1">Happy Clients</div>
-              </motion.div>
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4 }}
-              >
-                <div className="text-3xl font-bold text-[#A4D65E]">100%</div>
-                <div className="text-sm text-gray-600 mt-1">Quality Assured</div>
-              </motion.div>
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 }}
-              >
-                <div className="text-3xl font-bold text-[#A4D65E]">24/7</div>
-                <div className="text-sm text-gray-600 mt-1">Support Available</div>
-              </motion.div>
-            </div>
+                View Collections
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* Collections Section */}
-      <section id="collections" className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section id="collections" className="py-20 sm:py-24 md:py-32 bg-white relative overflow-hidden">
+        {/* Background Decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#A4D65E]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#A4D65E]/5 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
-             initial={{ opacity: 0, y: 30 }}
+             initial={{ opacity: 0, y: 50 }}
              whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true, amount: 0.5 }}
-             transition={{ duration: 0.7 }}
-             className="text-center mb-8 sm:mb-12"
+             viewport={{ once: true, amount: 0.3 }}
+             transition={{ duration: 0.8 }}
+             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A]">Our Collections</h2>
-            <div className="w-24 h-1 bg-[#A4D65E] mx-auto mt-4 mb-6"></div>
-            <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-              Each collection is a testament to quality craftsmanship and timeless design. Find the perfect style for your space.
-            </p>
+            <motion.h2 
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#4A4A4A] tracking-tight mb-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Our Collections
+            </motion.h2>
+            <motion.div 
+              className="w-24 h-1 bg-[#A4D65E] mx-auto"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            ></motion.div>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
             {collections.map((collection, index) => (
-              <CollectionCard key={collection.id} collection={collection} />
+              <motion.div
+                key={collection.id}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <CollectionCard collection={collection} />
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* About Us Section */}
-      <section id="about-us" className="py-12 sm:py-16 md:py-20 bg-white">
+      <section id="about-us" className="py-20 sm:py-24 md:py-32 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
            <motion.div
-             initial={{ opacity: 0, y: 30 }}
+             initial={{ opacity: 0, y: 50 }}
              whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true, amount: 0.5 }}
-             transition={{ duration: 0.7 }}
-             className="text-center mb-8 sm:mb-12"
+             viewport={{ once: true, amount: 0.3 }}
+             transition={{ duration: 0.8 }}
+             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A]">About Vawmy</h2>
-            <div className="w-24 h-1 bg-[#A4D65E] mx-auto mt-4"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8 }}
+            <motion.h2 
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#4A4A4A] tracking-tight mb-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <img src="https://images.pexels.com/photos/667838/pexels-photo-667838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interior of a modern home" className="rounded-lg shadow-xl w-full border-4 border-[#A4D65E]/20" />
+              About Vawmy Curtains
+            </motion.h2>
+            <motion.div 
+              className="w-24 h-1 bg-[#A4D65E] mx-auto"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            ></motion.div>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -80, rotate: -5 }}
+              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
+              <img 
+                src="https://images.pexels.com/photos/6969831/pexels-photo-6969831.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Interior of a modern home" 
+                className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
+              />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 80 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1, ease: "easeOut" }}
               className="text-gray-700"
             >
-              <p className="text-base sm:text-lg mb-4 leading-relaxed">
-                At <span className="font-bold text-[#4A4A4A]">Vawmy Curtains & Decor</span>, we believe that windows are the soul of a room. For over a decade, we have dedicated ourselves to crafting exquisite, high-quality window treatments that do more than just cover a window—they transform a space.
-              </p>
-              <p className="text-base sm:text-lg leading-relaxed">
-                Our passion for design and commitment to craftsmanship are woven into every fabric we select and every stitch we make. We work with the finest materials to create curtains and shades that are not only beautiful but also durable and functional.
-              </p>
-              <div className="mt-6 flex items-center space-x-2">
-                <div className="w-12 h-1 bg-[#A4D65E]"></div>
-                <span className="text-[#A4D65E] font-semibold">Quality • Style • Excellence</span>
+              <motion.p 
+                className="text-base sm:text-lg mb-8 leading-relaxed font-light"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                Crafting stylish and comfortable curtains in Malaysia, blending style with functionality for every home.
+              </motion.p>
+              
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <motion.div 
+                  className="text-center p-6 bg-gradient-to-br from-[#A4D65E]/10 to-[#A4D65E]/5 rounded-xl border border-[#A4D65E]/20"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(164, 214, 94, 0.2)" }}
+                >
+                  <div className="text-4xl font-bold text-[#A4D65E]">150+</div>
+                  <div className="text-sm text-gray-600 mt-2">Since 2010</div>
+                </motion.div>
+                <motion.div 
+                  className="text-center p-6 bg-gradient-to-br from-[#A4D65E]/10 to-[#A4D65E]/5 rounded-xl border border-[#A4D65E]/20"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(164, 214, 94, 0.2)" }}
+                >
+                  <div className="text-4xl font-bold text-[#A4D65E]">15</div>
+                  <div className="text-sm text-gray-600 mt-2">Installed Locally</div>
+                </motion.div>
               </div>
+              
+              
             </motion.div>
           </div>
         </div>
