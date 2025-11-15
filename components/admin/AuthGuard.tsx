@@ -135,17 +135,37 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
     );
   }
 
+  // Force refresh credentials
+  const handleRefreshAuth = () => {
+    sessionStorage.removeItem('admin_auth');
+    const validUsername = import.meta.env.VITE_ADMIN_USERNAME || 'admin';
+    const validPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'changeme';
+    const authToken = btoa(`${validUsername}:${validPassword}`);
+    sessionStorage.setItem('admin_auth', authToken);
+    alert('Credentials refreshed! Page will reload.');
+    window.location.reload();
+  };
+
   // Authenticated - render children with logout option
   return (
     <>
       {children}
-      <button 
-        onClick={handleLogout}
-        className="auth-logout-btn"
-        title="Logout"
-      >
-        Logout
-      </button>
+      <div style={{ position: 'fixed', top: '1.5rem', right: '2rem', display: 'flex', gap: '0.75rem', zIndex: 1001 }}>
+        <button 
+          onClick={handleRefreshAuth}
+          className="auth-refresh-btn"
+          title="Refresh credentials from .env file"
+        >
+          🔄 Refresh
+        </button>
+        <button 
+          onClick={handleLogout}
+          className="auth-logout-btn"
+          title="Logout"
+        >
+          🚪 Logout
+        </button>
+      </div>
     </>
   );
 };

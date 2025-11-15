@@ -228,3 +228,33 @@
     font-size: 0.875rem;
   }
 }
+
+.auth-refresh-btn {
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, #A4D65E 0%, #8BC34A 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(164, 214, 94, 0.4);
+  transition: all 0.3s;
+}
+
+.auth-refresh-btn:hover {
+  background: linear-gradient(135deg, #8BC34A 0%, #7CB342 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(164, 214, 94, 0.5);
+}
+
+.auth-refresh-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .auth-refresh-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}

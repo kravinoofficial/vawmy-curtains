@@ -4,10 +4,25 @@ const getAuthHeader = () => {
   // Get credentials from session storage (set by AuthGuard)
   const authToken = sessionStorage.getItem('admin_auth');
   if (authToken) {
+    // Verify the token matches current env variables
+    try {
+      const [storedUser, storedPass] = atob(authToken).split(':');
+      const validUser = import.meta.env.VITE_ADMIN_USERNAME || 'admin';
+      const validPass = import.meta.env.VITE_ADMIN_PASSWORD || 'changeme';
+      
+      // If credentials don't match, clear session and use env
+      if (storedUser !== validUser || storedPass !== validPass) {
+        console.warn('Session credentials outdated, using env variables');
+        sessionStorage.removeItem('admin_auth');
+        return 'Basic ' + btoa(`${validUser}:${validPass}`);
+      }
+    } catch (e) {
+      console.error('Error validating auth token:', e);
+    }
     return 'Basic ' + authToken;
   }
   
-  // Fallback to env variables (shouldn't happen if AuthGuard is working)
+  // Fallback to env variables
   const username = import.meta.env.VITE_ADMIN_USERNAME || 'admin';
   const password = import.meta.env.VITE_ADMIN_PASSWORD || 'changeme';
   return 'Basic ' + btoa(`${username}:${password}`);
