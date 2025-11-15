@@ -24,8 +24,20 @@ const AppContent: React.FC = () => {
   const location = useLocation();
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    // Check if there's a hash in the URL
+    if (location.hash) {
+      // Small delay to ensure the page is rendered
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    } else {
+      // Only scroll to top if there's no hash
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <Routes>

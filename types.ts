@@ -4,6 +4,19 @@ export interface Collection {
   description: string;
   cover_image: string;
   images: string[];
+  video_url?: string;
+  display_order?: number;
+  subcategories?: Subcategory[];
+}
+
+export interface Subcategory {
+  id: string;
+  collection_id: string;
+  name: string;
+  images: string[];
+  display_order: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface ContactInfo {

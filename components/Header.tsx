@@ -31,23 +31,19 @@ const Header: React.FC = () => {
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 py-2 sm:py-3 flex justify-between items-center">
-          <a 
-            href="/#" 
+          <Link 
+            to="/" 
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
           >
             <img src="/logo-removebg-preview.png" alt="Vawmy Curtains & Decor" className="h-12 sm:h-14 md:h-16 w-auto" />
-          </a>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/#collections" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">Collections</a>
+            <Link to="/#collections" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">Collections</Link>
             <Link to="/blog" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">Blog</Link>
-            <a href="/#about-us" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">About</a>
-            <a href="/#contact" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">Contact</a>
+            <Link to="/#about-us" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">About</Link>
+            <Link to="/#contact" className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium">Contact</Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -75,13 +71,13 @@ const Header: React.FC = () => {
               <img src="/logo-removebg-preview.png" alt="Vawmy" className="h-12 w-auto" />
             </div>
             <nav className="flex flex-col p-6 space-y-6">
-              <a 
-                href="/#collections" 
+              <Link 
+                to="/#collections" 
                 className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium text-lg"
                 onClick={handleLinkClick}
               >
                 Collections
-              </a>
+              </Link>
               <Link 
                 to="/blog" 
                 className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium text-lg"
@@ -89,20 +85,20 @@ const Header: React.FC = () => {
               >
                 Blog
               </Link>
-              <a 
-                href="/#about-us" 
+              <Link 
+                to="/#about-us" 
                 className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium text-lg"
                 onClick={handleLinkClick}
               >
                 About
-              </a>
-              <a 
-                href="/#contact" 
+              </Link>
+              <Link 
+                to="/#contact" 
                 className="text-gray-700 hover:text-[#A4D65E] transition-colors font-medium text-lg"
                 onClick={handleLinkClick}
               >
                 Contact
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

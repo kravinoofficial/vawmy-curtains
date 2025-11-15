@@ -1,42 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { api } from '../api';
 import { Collection } from '../types';
 import AnimatedPage from './AnimatedPage';
-import { FiX } from 'react-icons/fi';
 
 const CollectionDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [collection, setCollection] = useState<Collection | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCollection = async () => {
-      if (!id) return;
-      
-      try {
-        const data = await api.getCollection(id);
-        setCollection(data);
-      } catch (error) {
-        console.error('Error fetching collection:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCollection();
+    loadCollection();
   }, [id]);
+
+  const loadCollection = async () => {
+    try {
+      const data = await api.getCollection(id!);
+      setCollection(data);
+    } catch (error) {
+      console.error('Error loading collection:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
       <AnimatedPage>
-        <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <img src="/logo-removebg-preview.png" alt="Vawmy" className="h-20 mx-auto mb-6 opacity-50" />
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#A4D65E] mx-auto mb-4"></div>
-            <p className="text-gray-600 font-medium">Loading collection...</p>
+            <p className="text-gray-600">Loading collection...</p>
           </div>
         </div>
       </AnimatedPage>
@@ -46,115 +42,142 @@ const CollectionDetailPage: React.FC = () => {
   if (!collection) {
     return (
       <AnimatedPage>
-        <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 sm:p-6 pt-20 sm:pt-24 bg-white">
-          <img src="/logo-removebg-preview.png" alt="Vawmy" className="h-24 mx-auto mb-6 opacity-30" />
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#4A4A4A] mb-4">Collection Not Found</h2>
-          <p className="mb-6 sm:mb-8 text-base sm:text-lg px-4 text-gray-600">We couldn't find the collection you were looking for.</p>
-          <Link to="/" className="bg-[#A4D65E] text-[#4A4A4A] font-bold py-3 px-6 text-sm sm:text-base rounded-full hover:bg-[#8BC34A] transition-colors shadow-lg">
-            Back to Home
-          </Link>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Collection not found</h2>
+            <Link to="/" className="text-[#A4D65E] hover:underline">Go back home</Link>
+          </div>
         </div>
       </AnimatedPage>
     );
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 },
-  };
-
   return (
     <AnimatedPage>
-      <div className="container mx-auto px-4 sm:px-6 py-20 sm:py-24 md:py-32 bg-white min-h-screen">
-        {/* Header */}
-        <motion.div 
-          className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#4A4A4A]">{collection.name}</h1>
-          <div className="w-24 h-1 bg-[#A4D65E] mx-auto mt-4 mb-6"></div>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 px-4">
-            {collection.description}
-          </p>
-        </motion.div>
-
-        {/* Masonry Grid */}
-        <motion.div
-          className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 md:gap-8 space-y-4 sm:space-y-6 md:space-y-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-        >
-          {collection.images.map((image, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="overflow-hidden rounded-lg shadow-lg cursor-pointer break-inside-avoid border-2 border-transparent hover:border-[#A4D65E] transition-all duration-300"
-              onClick={() => setSelectedImg(image)}
-            >
-              <motion.img
-                src={image}
-                alt={`${collection.name} image ${index + 1}`}
-                className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Back to Collections Link */}
-        <div className="text-center mt-12 sm:mt-16">
-          <Link to="/" className="inline-block bg-[#A4D65E] text-[#4A4A4A] font-bold py-3 px-6 sm:px-8 text-sm sm:text-base rounded-full hover:bg-[#8BC34A] transition-all duration-300 transform hover:scale-105 shadow-lg">
-            &larr; Back to Collections
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="container mx-auto px-4 sm:px-6">
+          {/* Back Button */}
+          <Link 
+            to="/#collections" 
+            className="inline-flex items-center text-[#A4D65E] hover:text-[#8BC34A] mb-8 font-semibold"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = '/#collections';
+            }}
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Collections
           </Link>
+
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#4A4A4A] mb-4">
+              {collection.name}
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              {collection.description}
+            </p>
+          </motion.div>
+
+          {/* Video Section */}
+          {collection.video_url && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-16"
+            >
+              <div className="max-w-5xl mx-auto flex justify-center">
+                <video 
+                  autoPlay
+                  loop
+                  playsInline
+                  controls 
+                  className="rounded-2xl shadow-2xl max-h-[70vh] w-auto max-w-full"
+                  poster={collection.cover_image}
+                >
+                  <source src={collection.video_url} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Subcategories */}
+          {collection.subcategories && collection.subcategories.length > 0 ? (
+            <div className="space-y-16">
+              {collection.subcategories.map((subcategory, index) => (
+                <motion.div
+                  key={subcategory.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-8 shadow-lg"
+                >
+                  <h2 className="text-3xl sm:text-4xl font-bold text-[#4A4A4A] mb-8 pb-4 border-b-2 border-[#A4D65E]">
+                    {subcategory.name}
+                  </h2>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {subcategory.images.map((image, imgIndex) => (
+                      <motion.div
+                        key={imgIndex}
+                        whileHover={{ scale: 1.05 }}
+                        className="relative overflow-hidden rounded-xl shadow-md cursor-pointer group"
+                        onClick={() => setSelectedImage(image)}
+                      >
+                        <img 
+                          src={image}
+                          alt={`${subcategory.name} ${imgIndex + 1}`}
+                          className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                          <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                          </svg>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No subcategories available yet.</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImg && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4"
-            onClick={() => setSelectedImg(null)}
+      {/* Image Lightbox */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 text-white text-4xl hover:text-[#A4D65E] transition-colors"
+            onClick={() => setSelectedImage(null)}
           >
-            <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              src={selectedImg}
-              alt="Enlarged view"
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image
-            />
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.2 } }}
-              exit={{ opacity: 0 }}
-              className="absolute top-5 right-5 text-white text-4xl hover:text-[#A4D65E] transition-colors bg-[#4A4A4A]/50 rounded-full p-2"
-              onClick={() => setSelectedImg(null)}
-              aria-label="Close image view"
-            >
-              <FiX />
-            </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ×
+          </button>
+          <img 
+            src={selectedImage}
+            alt="Full size"
+            className="max-w-full max-h-full object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </AnimatedPage>
   );
 };

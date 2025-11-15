@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
       <div 
         className="h-[65vh] min-h-[650px] flex items-center justify-center relative overflow-hidden"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=format&fit=crop&w=2400&q=100')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=2400&q=100')",
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -75,7 +75,7 @@ const HomePage: React.FC = () => {
               <img src="/logo-removebg-preview.png" alt="Vawmy Curtains & Decor" className="h-32 sm:h-40 md:h-48 lg:h-56 mx-auto" />
             </motion.div>
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-[#4A4A4A]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-black"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -83,12 +83,12 @@ const HomePage: React.FC = () => {
               Elegance, Redefined
             </motion.h1>
             <motion.p 
-              className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto text-gray-700 mb-4 font-light"
+              className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto text-black mb-4 font-light"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Handcrafted curtains and decor from boutique Malaysian artisans
+              Handcrafted curtains and decor from boutique Indian artisans
             </motion.p>
             <motion.div
               className="flex justify-center items-center mt-8"
@@ -189,14 +189,24 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
+              className="relative space-y-6"
             >
-              <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
-              <img 
-                src="https://images.pexels.com/photos/6969831/pexels-photo-6969831.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Interior of a modern home" 
-                className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
-              />
+              <div className="relative">
+                <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" 
+                  alt="Elegant curtains in a modern home" 
+                  className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
+                />
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80" 
+                  alt="Beautiful curtain designs" 
+                  className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
+                />
+              </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 80 }}
@@ -212,7 +222,7 @@ const HomePage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                Crafting stylish and comfortable curtains in Malaysia, blending style with functionality for every home.
+                Crafting stylish and comfortable curtains in India, blending style with functionality for every home.
               </motion.p>
               
               <div className="grid grid-cols-2 gap-6 mb-8">

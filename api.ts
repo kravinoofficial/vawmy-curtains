@@ -51,6 +51,7 @@ export const api = {
       },
       body: JSON.stringify(data)
     });
+    if (!res.ok) throw new Error('Failed to create collection');
     return res.json();
   },
 
@@ -63,6 +64,7 @@ export const api = {
       },
       body: JSON.stringify(data)
     });
+    if (!res.ok) throw new Error('Failed to update collection');
     return res.json();
   },
 
@@ -102,6 +104,27 @@ export const api = {
       headers: { 'Authorization': getAuthHeader() },
       body: formData
     });
+    if (!res.ok) throw new Error('Failed to upload image');
+    return res.json();
+  },
+
+  uploadVideo: async (file: File) => {
+    if (file.size > 10 * 1024 * 1024) {
+      throw new Error('Video file must be under 10MB');
+    }
+    
+    const formData = new FormData();
+    formData.append('video', file);
+    
+    const res = await fetch(`${API_URL}/api/upload-video`, {
+      method: 'POST',
+      headers: { 'Authorization': getAuthHeader() },
+      body: formData
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to upload video');
+    }
     return res.json();
   },
 
@@ -155,6 +178,57 @@ export const api = {
   getVisibleSocialMedia: async () => {
     const res = await fetch(`${API_URL}/api/social/visible`);
     if (!res.ok) throw new Error('Failed to fetch visible social media');
+    return res.json();
+  },
+
+  // Subcategories
+  getSubcategories: async (collectionId: string) => {
+    const res = await fetch(`${API_URL}/api/collections/${collectionId}/subcategories`);
+    if (!res.ok) throw new Error('Failed to fetch subcategories');
+    return res.json();
+  },
+
+  createSubcategory: async (data: any) => {
+    const res = await fetch(`${API_URL}/api/subcategories`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to create subcategory');
+    }
+    return res.json();
+  },
+
+  updateSubcategory: async (id: string, data: any) => {
+    const res = await fetch(`${API_URL}/api/subcategories/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to update subcategory');
+    }
+    return res.json();
+  },
+
+  deleteSubcategory: async (id: string) => {
+    const res = await fetch(`${API_URL}/api/subcategories/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': getAuthHeader() }
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || 'Failed to delete subcategory');
+    }
     return res.json();
   },
 

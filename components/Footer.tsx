@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FiFacebook, FiInstagram, FiMail, FiPhone, FiMapPin, FiTwitter, FiLinkedin, FiYoutube } from 'react-icons/fi';
 import { api } from '../api';
 import { SocialMedia, ContactInfo } from '../types';
@@ -98,34 +99,34 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="/" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
+                <Link to="/" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-[#A4D65E] mr-0 group-hover:mr-2 transition-all duration-300"></span>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#collections" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
+                <Link to="/#collections" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-[#A4D65E] mr-0 group-hover:mr-2 transition-all duration-300"></span>
                   Collections
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/blog" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
+                <Link to="/blog" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-[#A4D65E] mr-0 group-hover:mr-2 transition-all duration-300"></span>
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#about-us" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
+                <Link to="/#about-us" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-[#A4D65E] mr-0 group-hover:mr-2 transition-all duration-300"></span>
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#contact" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
+                <Link to="/#contact" className="text-gray-600 hover:text-[#A4D65E] transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-[#A4D65E] mr-0 group-hover:mr-2 transition-all duration-300"></span>
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
