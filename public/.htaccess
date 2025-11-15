@@ -26,3 +26,12 @@ Options -Indexes
 
 # Set default charset
 AddDefaultCharset UTF-8
+
+# Set proper MIME types for JavaScript and other assets
+<IfModule mod_mime.c>
+    AddType application/javascript js mjs
+    AddType text/css css
+    AddType image/svg+xml svg svgz
+    AddType font/woff woff
+    AddType font/woff2 woff2
+</IfModule>
