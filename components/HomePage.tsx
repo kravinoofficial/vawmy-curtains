@@ -189,24 +189,14 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="relative space-y-6"
+              className="relative"
             >
-              <div className="relative">
-                <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" 
-                  alt="Elegant curtains in a modern home" 
-                  className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80" 
-                  alt="Beautiful curtain designs" 
-                  className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
-                />
-              </div>
+              <div className="absolute -inset-4 bg-[#A4D65E]/10 rounded-2xl blur-2xl"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80" 
+                alt="Beautiful curtain designs" 
+                className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white" 
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 80 }}
